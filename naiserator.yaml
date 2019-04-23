@@ -1,0 +1,27 @@
+apiVersion: nais.io/v1alpha1
+kind: Application
+metadata:
+  labels:
+    team: aura
+  name: nais-redispersistens
+  namespace: default
+spec:
+  env:
+  - name: RACK_ENV
+    value: PRODUCTION
+  - name: REDIS_HOST
+    value: rfs-kyrre-persistent
+  image: navikt/nais-redistest:bump-3
+  ingresses:
+    - https://redispersistens.nais.preprod.local
+  port: 8080
+  replicas:
+    max: 1
+    min: 1
+  resources:
+    limits:
+      cpu: 250m
+      memory: 256Mi
+    requests:
+      cpu: 250m
+      memory: 256Mi
